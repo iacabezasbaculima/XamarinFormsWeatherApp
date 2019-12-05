@@ -4,12 +4,41 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="WeatherApp.CitiesPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="WeatherApp.CitiesPage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+    
+    <StackLayout Margin="5, 0">
+        <Grid MinimumHeightRequest="50" Margin="5,10" HorizontalOptions="FillAndExpand" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Your Cities" FontSize="30" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="Center" TextColor="Black"/>
+            <ImageButton Grid.Column="1" x:Name="BtnEdit" Source="edit.png" Clicked="BtnEdit_Clicked" HorizontalOptions="End" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="25"/>
+        </Grid>
+        <StackLayout Orientation="Horizontal">
+            <Entry x:Name="entCityName" Placeholder="City Name" WidthRequest="300" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Keyboard="Text">
+                <Entry.Effects>
+                </Entry.Effects>
+            </Entry>
+            <ImageButton Source="addCross.png" Clicked="btnAdd_Clicked" Margin="10, 0" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="20" WidthRequest="20"/>
         </StackLayout>
-    </ContentPage.Content>
+
+        <ListView x:Name="lvCities" ItemTapped="lvCities_ItemTapped" ItemsSource="{Binding cities}" SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
+                            <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Label Text="{Binding Name}" TextColor="#757575" FontSize="20" VerticalOptions="Center" Margin="20,0"/>
+                                <Image Grid.Column="1" Source="{Binding Icon}" WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
 </ContentPage>
