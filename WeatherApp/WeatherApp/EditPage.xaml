@@ -13,18 +13,18 @@
    
     <!-- CITIES -->
 
-    <ListView x:Name="lvCities" ItemsSource="{Binding Cities}" SeparatorVisibility="None" SelectionMode="None">
+    <ListView x:Name="lvCities" ItemsSource="{Binding Cities}" VerticalOptions="FillAndExpand" SeparatorVisibility="None" SelectionMode="None">
         <ListView.ItemTemplate>
             <DataTemplate >
                 <ViewCell>
                     <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" HasShadow="False">
                         <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="{Binding Name}" TextColor="#757575" FontSize="20" VerticalOptions="Center" Margin="20,0"/>
-                            <ImageButton Grid.Column="1" Source="minus.png" Clicked="btnRemove_Clicked"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="20" HeightRequest="20" />
+                            <ImageButton Grid.Column="1" Source="minus.png" Clicked="btnRemove_Clicked"  HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="20" HeightRequest="20" />
                         </Grid>
                     </Frame>
                 </ViewCell>

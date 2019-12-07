@@ -26,8 +26,6 @@ namespace WeatherApp.ViewModels
 		{
 			Cities = new ObservableCollection<City>();
 
-			var path = App.FilePath;
-
 			using (var con = new SQLite.SQLiteConnection(App.FilePath))
 			{
 				con.Table<City>().ToList().ForEach(i => Cities.Add(i));

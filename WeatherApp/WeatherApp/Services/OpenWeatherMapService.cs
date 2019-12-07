@@ -49,6 +49,7 @@ namespace WeatherApp.Services
 					{
 						City = w.Parent.Parent.Element("location").Element("name").Value,
 						Country = w.Parent.Parent.Element("location").Element("country").Value,
+						UTCOffsetInSecs = int.Parse(w.Parent.Parent.Element("location").Element("timezone").Value),
 						Date = DateTime.Parse(w.Attribute("from").Value),
 						SunSet = DateTime.Parse(w.Parent.Parent.Element("sun").Attribute("set").Value.Substring(11, 8)),
 						SunRise = DateTime.Parse(w.Parent.Parent.Element("sun").Attribute("rise").Value.Substring(11, 8)),

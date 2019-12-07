@@ -8,6 +8,7 @@ namespace WeatherApp.Models
 	{
 		public string City { get; set; }
 		public string Country { get; set; }
+		public int UTCOffsetInSecs { get; set; }
 		public DateTime SunSet { get; set; }
 		public DateTime SunRise { get; set; }
 		public DateTime Date { get; set; }

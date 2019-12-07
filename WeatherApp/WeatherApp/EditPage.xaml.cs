@@ -24,11 +24,13 @@ namespace WeatherApp
 			var city = button.BindingContext as City;
 			var vm = BindingContext as CitiesViewModel;
 
+			// remove city from observable collection
+			vm.RemoveCommand.Execute(city);
 			
+			// remove city from database
 			using (var con = new SQLite.SQLiteConnection(App.FilePath))
 			{
 				int removedCity = con.Delete(city);
-				vm.RemoveCommand.Execute(city);
 			}
 		}
 	}

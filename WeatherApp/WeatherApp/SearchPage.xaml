@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WeatherApp.SearchPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <!--SEARCH BAR-->
+            <SearchBar x:Name="SearchBar" Placeholder="Search cities" 
+                           TextChanged="SearchBar_TextChanged"
+                           Margin="0, 5"
+                           VerticalOptions="CenterAndExpand" BackgroundColor="White"
+                           FontSize="Large"/>
+            <!--PREDICTIONS-->
+            <ListView Margin="0,10,0,0" x:Name="LVResults" ItemTapped="LSResults_ItemTapped" ItemsSource="{Binding results}" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
+                                <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                    <Label Text="{Binding description}" TextColor="#757575" FontSize="20" VerticalOptions="Center"/>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--POWERED BY GOOGLE LOGO-->
+            <Image Margin="0,5" Source="google_white.png" VerticalOptions="EndAndExpand" WidthRequest="25" HeightRequest="25"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

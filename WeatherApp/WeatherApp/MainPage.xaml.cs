@@ -79,10 +79,12 @@ namespace WeatherApp
 			var data = await service.GetForecastAsync(cityName);
 
 			today = data.First();
-			forecastData = data.Where(i => i.Date.Day == TimeOfDay.Tomorrow.Day).ToList();
+
+			var localTime = DateTime.Now.Add(TimeSpan.FromSeconds(today.UTCOffsetInSecs));
 
 			// Tomorrow
 			tomorrow = new WeatherForecast();
+			forecastData = data.Where(i => i.Date.Day == localTime.Date.AddDays(1).Day).ToList();
 			Tuple<int, int> tuple = ProcessData(forecastData, out tomorrow);
 			tomorrow.MinTemperature = tuple.Item1;
 			tomorrow.MaxTemperature = tuple.Item2;
@@ -91,7 +93,7 @@ namespace WeatherApp
 
 			// AfterTomorrow
 			afterTomorrow = new WeatherForecast();
-			forecastData = data.Where(i => i.Date.Day == TimeOfDay.AfterTomorrow.Day).ToList();
+			forecastData = data.Where(i => i.Date.Day == localTime.Date.AddDays(2).Day).ToList();
 			tuple = ProcessData(forecastData, out afterTomorrow);
 			afterTomorrow.MinTemperature = tuple.Item1;
 			afterTomorrow.MaxTemperature = tuple.Item2;
@@ -99,14 +101,14 @@ namespace WeatherApp
 			forecastData.Clear();
 
 			// AfterTomorrow + 1 Day 
-			forecastData = data.Where(i => i.Date.Day == TimeOfDay.AfterTomorrow.AddDays(1).Day).ToList();
+			forecastData = data.Where(i => i.Date.Day == localTime.Date.AddDays(3).Day).ToList();
 			fourth = new WeatherForecast();
 			tuple = ProcessData(forecastData, out fourth);
 			fourth.MinTemperature = tuple.Item1;
 			fourth.MaxTemperature = tuple.Item2;
 
 			// AfterTomorrow + 2 Days
-			forecastData = data.Where(i => i.Date.Day == TimeOfDay.AfterTomorrow.AddDays(2).Day).ToList();
+			forecastData = data.Where(i => i.Date.Day == localTime.Date.AddDays(4).Day).ToList();
 			fifth = new WeatherForecast();
 			tuple = ProcessData(forecastData, out fifth);
 			fifth.MinTemperature = tuple.Item1;
@@ -116,7 +118,7 @@ namespace WeatherApp
 		}
 		private async void ViewCities_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PopAsync();
+			await Navigation.PopToRootAsync();
 		}
 		/// <summary>
 		/// Update everything displayed in UI with forecast data
@@ -124,7 +126,7 @@ namespace WeatherApp
 		private void UpdateUIElements()
 		{
 			// Today
-			lbDate.Text = $"{DateTime.Now.ToString("ddd, d MMMM hh:mm tt", CultureInfo.InvariantCulture)}";
+			lbDate.Text = $"{DateTime.Now.Add(TimeSpan.FromSeconds(today.UTCOffsetInSecs)).ToString("ddd, d MMMM hh:mm tt", CultureInfo.InvariantCulture)}";
 			imgToday.Source = $"w{today.ImageId}.png";
 			lbTemp.Text = $"{Math.Round(today.Temperature)}";
 			lbDescription.Text = $"{today.Description.First().ToString().ToUpper()}{today.Description.Substring(1)}";
