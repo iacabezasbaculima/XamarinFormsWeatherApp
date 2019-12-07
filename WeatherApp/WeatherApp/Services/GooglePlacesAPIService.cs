@@ -11,7 +11,7 @@ namespace WeatherApp.Services
 {
 	public class GooglePlacesAPIService<T>
 	{
-		private static readonly string _API_KEY = "AIzaSyBvtgqqAIbljIvEizq2EgxoQ7SVZNMmzlc";
+		private static readonly string _API_KEY = "YOUR_KEY";
 		// base url: https://maps.googleapis.com/maps/api/place/autocomplete/json?
 		
 		public async Task<T> GetAsync(string textInput, string token)

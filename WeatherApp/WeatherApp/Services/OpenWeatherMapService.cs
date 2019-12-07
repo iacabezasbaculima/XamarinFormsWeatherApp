@@ -12,7 +12,7 @@ namespace WeatherApp.Services
 {
 	public class OpenWeatherMapService
 	{
-		private const string _APP_KEY = "cf57eb65fef30ff16cf331c040d18b32";
+		private const string _APP_KEY = "YOUR_KEY";
 		private HttpClient _client;
 
 		public enum QueryType { SINGLE_DAY, FIVE_DAYS }	
