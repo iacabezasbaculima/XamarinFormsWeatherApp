@@ -23,7 +23,7 @@ As the user inputs every other character we fetch the predictions with an API ca
 
 [`<SEARCH_TEXT>`] is the input from the user and [`<API_KEY>`](https://developers.google.com/places/web-service/get-api-key) is the user-specific key which is required for each API call.
 
-# Using Google Places API
+# Using Place Autocomplete Data
 The API call returns JSON formatted data of five distinct places, for example:
 
 ```json
