@@ -61,4 +61,6 @@ The API call returns JSON formatted data of five distinct places, for example:
 ```
 For more information, please visit [Places API Docs](https://developers.google.com/places/web-service/intro).
 
+# Contributors
+[Ross Stapleton](https://github.com/R-s866)
 
